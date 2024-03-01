@@ -1,9 +1,15 @@
+const cancelarBtn = document.querySelector('.app__form-footer__button--cancel')
 const adicionarTarefaBtn = document.querySelector('.app__button--add-task')
 const formAdicionarTarefa = document.querySelector('.app__form-add-task')
 const textarea = document.querySelector('.app__form-textarea')
 const storedData = localStorage.getItem('tarefas');
 const tarefas = storedData ? JSON.parse(storedData) : [];
 const ulTarefas = document.querySelector('.app__section-task-list')
+
+function limparFormulario() {
+    textarea.value = ''
+    formAdicionarTarefa.classList.add('hidden')
+}
 
 function atualizarTarefas(){
     localStorage.setItem('tarefas', JSON.stringify(tarefas))
@@ -46,6 +52,8 @@ function criarElementoTarefa(tarefa){
 
     return li
 }
+
+cancelarBtn.addEventListener('click', limparFormulario)
 
 adicionarTarefaBtn.addEventListener('click', () => {
     formAdicionarTarefa.classList.toggle('hidden')
